@@ -1,11 +1,24 @@
+package it.unive.dais.po1.car;
+
+import it.unive.dais.po1.car.fuel.*;
+
 public class Car {
     double speed;
     FuelType fuelType;
     double fuel;
 
+    public Car(double speed, FuelType fuelType, double fuel) {
+        this.speed = speed;
+        this.fuelType = fuelType;
+        this.fuel = fuel;
+    }
+
     void refuel(FuelTank tank) throws Exception {
         if(!tank.type.equals(fuelType))throw new Exception();
-        else fuel+=tank.amount;
+        else {
+            fuel += tank.amount;
+            tank.amount=0;
+        }
     }
 
     void accelerate(double a){
@@ -18,14 +31,11 @@ public class Car {
     }
 
     public static void main(String[] args) throws Exception {
-        Car myCar=new Car();
         FuelType diesel = new FuelType("diesel",1.3,0.3);
-        FuelType petrol = new FuelType("benzina",1.5);
-        FuelType unknown = new FuelType();
-        FuelTank tank=new FuelTank(diesel,34.5);
-        myCar.fuelType=diesel;
+        Car myCar=new Car(100,diesel,10);
+        FuelTank tank=new FuelTank(diesel,10);
         myCar.refuel(tank);
-        FuelTank.resetTanksCount();
+
     }
 
 }

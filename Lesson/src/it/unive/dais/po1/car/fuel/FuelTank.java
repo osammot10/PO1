@@ -1,6 +1,8 @@
+package it.unive.dais.po1.car.fuel;
+
 public class FuelTank {
-    FuelType type;
-    double amount;
+    public FuelType type;
+    public double amount;
     static int numberOfTanks=0;
     final int tankId;
 
